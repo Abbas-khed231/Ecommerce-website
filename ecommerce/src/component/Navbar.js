@@ -7,7 +7,7 @@ function Navbar(props) {
 
   const handleLogout = () => {
     localStorage.setItem('isAuthenticated', 0);
-    return navigate("");
+    return navigate("/");
   }
   
   return (

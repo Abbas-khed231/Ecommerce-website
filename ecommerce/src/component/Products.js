@@ -1,6 +1,6 @@
 import Skeleton from "react-loading-skeleton"
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Products() {
 
@@ -19,7 +19,7 @@ function Products() {
         setData(await response.clone().json());
         setFilter(await response.json());
         setLoading(false);
-        console.log(filter);
+        // console.log(filter);
         
       }
 
@@ -60,13 +60,19 @@ function Products() {
   }
 
   const ShowProducts = () => {
+    const navigate = useNavigate();
+
+    function handleBuy() {
+      navigate("/checkout");
+
+    }
     return (
       <>
         <div className="buttons d-flex justify-content-center mb-5 pb-5">
           <button className="btn btn-outline-dark me-2" onClick={() => setFilter(data)}>All</button>
           <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("men's clothing")}>Mens Clothing</button>
           <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("women's clothing")}>Womens Clothing</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jewellery")}>Jewellery</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jewelery")}>Jewellery</button>
           <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("electronics")}>Electronics</button>
         </div>
         {filter.map((product) => {
@@ -78,7 +84,11 @@ function Products() {
                             <div className="card-body">
                                 <h5 className="card-title mb-0">{product.title.substring(0,12)}...</h5>
                                     <p className="card-text lead fw-bolder">${product.price}</p>
-                                    <NavLink to={`/product/${product.id}`} className="btn btn-outline-dark">Buy Now</NavLink>
+                                    {/* <NavLink onClick={handleBuy()} className="btn btn-outline-dark">Buy Now</NavLink> */}
+                                    {/* <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark">Buy now</NavLink> */}
+                                    <button onClick={handleBuy} className="btn btn-outline-dark">Buy Now</button>
+                                    
+                                    <button className="btn btn-dark ms-3">Add to Cart</button>
                             </div>
                         </div>
                     </div>

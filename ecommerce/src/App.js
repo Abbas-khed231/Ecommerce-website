@@ -7,6 +7,7 @@ import {BrowserRouter,Route,Routes} from 'react-router-dom';
 import Layout from './component/Layout';
 import Products from './component/Products';
 import Product from './component/Product';
+import Checkout from './component/Checkout';
 
 
 function App() {
@@ -17,9 +18,11 @@ function App() {
           <Route path="/" element={<Auth />} />          
           <Route path="/Home" element={<Layout renderComponent={<Home />} />} />
           <Route path="/About" element={<Layout renderComponent={<About />}/>} />
-          {/* <Route path='/Products' element={<Layout renderComponent={<Products/>}/>} /> */}
-          <Route path='/Products' Component={Products} />
-          <Route path='products/:id' Component={Product}/>
+          <Route path='/Products' element={<Layout renderComponent={<Products/>}/>} />
+          <Route path='/Checkout' element={<Checkout/>}/>
+
+          {/* <Route path='/Products' Component={Products} /> */}
+          {/* <Route path='/products/:id' Component={Product}/> */}
         </Routes>
       </BrowserRouter> 
       {/* <Auth/>
