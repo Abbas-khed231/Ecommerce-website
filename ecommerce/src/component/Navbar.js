@@ -52,6 +52,8 @@ function Navbar(props) {
             </ul>
             <div className="buttons">
                 <NavLink to="/" className="btn btn-outline-dark">
+                {/* <NavLink onClick={handleLogout()} className="btn btn-outline-dark"> */}
+
                     <i className="fa fa-sign-out me-1"></i> Logout </NavLink>
                 <NavLink to="/cart" className="btn btn-outline-dark ms-2">
                     <i className="fa fa-shopping-cart me-1"></i> Cart (0)</NavLink>

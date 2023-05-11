@@ -1,84 +1,47 @@
-import React from "react";
-import {Modal, ModalHeader} from "reactstrap"
-function Checkout() {
+import { Typography, Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router";
+import Navbar from "./Navbar";
 
+function Checkout() {
+  
+  const navigate = useNavigate()
+
+  function handleContinue() {
+    navigate("/payment");
+  }
 
   return (
     <>
-      <div className="container">
-        <form action="">
-          <div className="row">
-            <div className="col">
-              <h3 className="title">billing address</h3>
-
-              <div className="inputBox">
-                <span>full name :</span>
-                <input type="text" placeholder="Enter full name" />
-              </div>
-              <div className="inputBox">
-                <span>email :</span>
-                <input type="email" placeholder="example@example.com" />
-              </div>
-              <div className="inputBox">
-                <span>address :</span>
-                <input type="text" placeholder="room - street - locality" />
-              </div>
-              <div className="inputBox">
-                <span>city :</span>
-                <input type="text" placeholder="Enter City" />
-              </div>
-
-              <div className="flex">
-                <div className="inputBox">
-                  <span>state :</span>
-                  <input type="text" placeholder="Enter State" />
-                </div>
-                <div className="inputBox">
-                  <span>pincode :</span>
-                  <input type="text" placeholder="123 456" />
-                </div>
-              </div>
-            </div>
-
-            <div className="col">
-              <h3 className="title">payment</h3>
-
-              <div className="inputBox">
-                <span>cards accepted :</span>
-                <img src="images/card_img.png" alt="" />
-              </div>
-              <div className="inputBox">
-                <span>name on card :</span>
-                <input type="text" placeholder="" />
-              </div>
-              <div className="inputBox">
-                <span>credit card number :</span>
-                <input type="number" placeholder="1111-2222-3333-4444" />
-              </div>
-              <div className="inputBox">
-                <span>exp month :</span>
-                <input type="text" placeholder="january" />
-              </div>
-
-              <div className="flex">
-                <div className="inputBox">
-                  <span>exp year :</span>
-                  <input type="number" placeholder="2022" />
-                </div>
-                <div className="inputBox">
-                  <span>CVV :</span>
-                  <input type="text" placeholder="1234" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <input
-            type="submit"
-            value="proceed to checkout"
-            className="submit-btn"
-          />
-        </form>
+      <Navbar/>
+      <div style={{textAlign:"center"}}>
+        <Typography variant="h4" fontWeight="500" > Billing Address</Typography>
+      </div>
+      <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center"}}>
+        <div>
+          <TextField type="text" label="Full name" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+        </div>
+        <div>
+          <TextField type="email" label="Email Address" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+        </div>
+      </div>
+      <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center"}}>
+        <div>
+          <TextField type="text" label="Address" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+        </div>
+        <div>
+          <TextField type="text" label="City" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+        </div>
+      </div>
+      <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center"}}>
+        <div>
+          <TextField type="text" label="State" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+        </div>
+        <div>
+          <TextField type="text" label="Pincode" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+        </div>
+      </div>
+      <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center", marginTop:"30px"}}>
+        <Button style={{color:"black", border:" 2px solid black"}} onClick={handleContinue} variant="outlined">Continue to Payment</Button>
       </div>
     </>
   );

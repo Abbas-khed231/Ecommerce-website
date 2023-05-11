@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Typography, TextField, Button } from "@mui/material";
+
 // import { redirect } from "react-router-dom";
 
 class Auth extends Component {
@@ -51,6 +52,7 @@ class Auth extends Component {
     return (
       <>
       
+      
       <div style={{display:"flex",justifyContent:"center" }}>
         <Typography variant="h3" fontWeight="700">AK COLLECTION</Typography>
       </div>
@@ -86,13 +88,13 @@ class Auth extends Component {
                 />
             </div>
             <div>
-                <Button
+                <Button 
                 variant="contained"
                 style={{
                     width: "400px",
                     lineHeight: "1.75",
                     marginTop: "2rem",
-                    backgroundColor: " rgb(99, 102, 241)",
+                    backgroundColor: "black",
                     cursor: "pointer",
                     padding: "11px 24px",
                 }}

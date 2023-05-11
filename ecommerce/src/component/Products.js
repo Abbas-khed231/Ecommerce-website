@@ -1,94 +1,140 @@
-import Skeleton from "react-loading-skeleton"
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
 
-function Products() {
-
-  const [data, setData] = useState([]);
-  const [filter, setFilter] = useState(data);
-  const [loading, setLoading] = useState(false);
-  let componentMounted = true;
-
-  useEffect(() => {
-    const getProducts = async () => {
-      setLoading(true);
-      const response = await fetch("https://fakestoreapi.com/products");
-      
-      
-      if (componentMounted) {
-        setData(await response.clone().json());
-        setFilter(await response.json());
-        setLoading(false);
-        // console.log(filter);
-        
-      }
-
-      return () => {
-        componentMounted = false;
-      };
+class Products extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      filter: [],
+      loading: false,
     };
-    getProducts();
-  }, []);
-
-  const Loading = () => {
-      return(
-          <>
-              <div className="col-md-3">
-                <Skeleton height={350}/>
-              </div>
-
-              <div className="col-md-3">
-                <Skeleton height={350}/>
-              </div>
-
-              <div className="col-md-3">
-                <Skeleton height={350}/>
-              </div>
-
-              <div className="col-md-3">
-                <Skeleton height={350}/>
-              </div>
-
-              
-          </>
-      )
+    this.filterProduct = this.filterProduct.bind(this);
   }
 
-  const filterProduct = (cat) => {
-    const updatedList = data.filter((x) => x.category === cat);
-    setFilter(updatedList);
+  componentDidMount() {
+    this.componentMounted = true;
+    this.getProducts();
   }
 
-  const ShowProducts = () => {
-    const navigate = useNavigate();
+  componentWillUnmount() {
+    this.componentMounted = false;
+  }
 
-    function handleBuy() {
-      navigate("/checkout");
-
+  async getProducts() {
+    this.setState({ loading: true });
+    const response = await fetch("https://fakestoreapi.com/products");
+    if (this.componentMounted) {
+      const data = await response.clone().json();
+      const filter = await response.json();
+      this.setState({ data, filter, loading: false });
     }
-    return (
-      <>
-        <div className="buttons d-flex justify-content-center mb-5 pb-5">
-          <button className="btn btn-outline-dark me-2" onClick={() => setFilter(data)}>All</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("men's clothing")}>Mens Clothing</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("women's clothing")}>Womens Clothing</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jewelery")}>Jewellery</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("electronics")}>Electronics</button>
-        </div>
-        {filter.map((product) => {
-            return(
-                <>
-                    <div className="col-md-3 mb-4">
-                        <div className="card h-100 text-center p-4" key={product.id}>
-                            <img src={product.image} height="250px" className="card-img-top" alt={product.title}/>
-                            <div className="card-body">
-                                <h5 className="card-title mb-0">{product.title.substring(0,12)}...</h5>
-                                    <p className="card-text lead fw-bolder">${product.price}</p>
-                                    {/* <NavLink onClick={handleBuy()} className="btn btn-outline-dark">Buy Now</NavLink> */}
-                                    {/* <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark">Buy now</NavLink> */}
-                                    <button onClick={handleBuy} className="btn btn-outline-dark">Buy Now</button>
-                                    
-                                    <button className="btn btn-dark ms-3">Add to Cart</button>
+  }
+
+  filterProduct(cat) {
+    const updatedList = this.state.data.filter((x) => x.category === cat);
+    this.setState({ filter: updatedList });
+  }
+
+  render() {
+    const { filter, data, loading } = this.state;
+    const { AddToCart, RemoveFromCart, cart} = this.props;
+
+
+    const Loading = () => {
+      return (
+        <>
+          <div className="col-md-3">
+            <Skeleton height={350} />
+          </div>
+
+          <div className="col-md-3">
+            <Skeleton height={350} />
+          </div>
+
+          <div className="col-md-3">
+            <Skeleton height={350} />
+          </div>
+
+          <div className="col-md-3">
+            <Skeleton height={350} />
+          </div>
+        </>
+      );
+    };
+
+    const ShowProducts = () => {
+      const navigate = useNavigate();
+
+      function handleBuy() {
+        navigate("/checkout");
+      }
+      return (
+        <>
+          <div className="buttons d-flex justify-content-center mb-5 pb-5">
+            <button
+              className="btn btn-outline-dark me-2"
+              onClick={() => this.setState({ filter: data })}
+            >
+              All
+            </button>
+            <button
+              className="btn btn-outline-dark me-2"
+              onClick={() => this.filterProduct("men's clothing")}
+            >
+              Mens Clothing
+            </button>
+            <button
+              className="btn btn-outline-dark me-2"
+              onClick={() => this.filterProduct("women's clothing")}
+            >
+              Womens Clothing
+            </button>
+            <button
+              className="btn btn-outline-dark me-2"
+              onClick={() => this.filterProduct("jewelery")}
+            >
+              Jewellery
+            </button>
+            <button
+              className="btn btn-outline-dark me-2"
+              onClick={() => this.filterProduct("electronics")}
+            >
+              Electronics
+            </button>
+          </div>
+          {filter.map((product) => {
+            return (
+              <>
+                <div className="col-md-3 mb-4">
+                  <div
+                    className="card h-100 text-center p-4"
+                    key={product.id}
+                  >
+                    <img
+                      src={product.image}
+                      height="250px"
+                      className="card-img-top"
+                      alt={product.title}
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title mb-0">
+                        {product.title.substring(0, 12)}...
+                      </h5>
+                      <p className="card-text lead fw-bolder">
+                        ${product.price}
+                      </p>
+                      <button
+                        onClick={handleBuy}
+                        className="btn btn-outline-dark"
+                      >
+                        Buy Now
+                      </button>
+
+                      <button onClick={() => AddToCart(product)} className="btn btn-dark ms-3">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -114,7 +160,28 @@ function Products() {
         </div>
       </div>
     </div>
-  );
+  )
+}
 }
 
-export default Products;
+const mapStateToProps = (state) => {
+  return {
+    cart :state.cartReducer.Cart_items
+  }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    AddToCart: "",
+    RemoveFromCart: ""
+  },dispatch
+) 
+  
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products)
+
+// export default Products;
+
+
+
