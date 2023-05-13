@@ -1,4 +1,4 @@
-import { AddToCart, RemoveFromCart } from "./cartSaga";
+import { AddToCart, RemoveFromCart } from "./cartAction";
 
 const initialState = {
     Cart_items : [],
@@ -6,10 +6,10 @@ const initialState = {
 }
 
 const cartReducer = (state = initialState, {type,payload} )=> {
-    console.log("payload : ",payload);
+    // console.log("payload : ",payload);
     switch (type) {
         case AddToCart:
-            let cartItems = state.Cart_items;
+            let cartItems = state.Cart_items;    
             let cartLength = state.cartLength;
             cartItems = [ ...cartItems,payload];
             cartLength = cartItems.length;

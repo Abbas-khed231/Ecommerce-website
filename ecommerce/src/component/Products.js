@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
+import { AddToCart,addToCart,removeFromCart } from "../store/cart/cartAction";
 
 class Products extends Component {
   constructor(props) {
@@ -41,7 +42,8 @@ class Products extends Component {
 
   render() {
     const { filter, data, loading } = this.state;
-    const { AddToCart, RemoveFromCart, cart} = this.props;
+    const { AddToCart } = this.props;
+    console.log("props : ",this.props);
 
 
     const Loading = () => {
@@ -172,8 +174,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
-    AddToCart: "",
-    RemoveFromCart: ""
+    AddToCart: addToCart,
+    RemoveFromCart: removeFromCart,
   },dispatch
 ) 
   

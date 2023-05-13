@@ -5,6 +5,8 @@ import {Typography,Button,RadioGroup, Radio,FormControl,FormControlLabel} from "
 
 function Payment() {
 
+ 
+
   return (
     <>
       <Navbar />
@@ -30,7 +32,7 @@ function Payment() {
         </FormControl>
       </div>
       <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center", marginTop:"30px"}}>
-        <Button style={{color:"black", border:" 2px solid black"}} variant="outlined">Continue</Button>
+        <Button style={{color:"black", border:" 2px solid black"}} variant="outlined">Submit</Button>
       </div>
     </>
   );

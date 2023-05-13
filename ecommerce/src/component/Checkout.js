@@ -18,26 +18,26 @@ function Checkout() {
       </div>
       <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center"}}>
         <div>
-          <TextField type="text" label="Full name" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+          <TextField type="text" label="Full name" style={{ width: "400px", marginTop: "2rem" }} variant="standard" required></TextField>
         </div>
         <div>
-          <TextField type="email" label="Email Address" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
-        </div>
-      </div>
-      <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center"}}>
-        <div>
-          <TextField type="text" label="Address" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
-        </div>
-        <div>
-          <TextField type="text" label="City" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+          <TextField type="email" label="Email Address" style={{ width: "400px", marginTop: "2rem" }} variant="standard"required></TextField>
         </div>
       </div>
       <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center"}}>
         <div>
-          <TextField type="text" label="State" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+          <TextField type="text" label="Address" style={{ width: "400px", marginTop: "2rem" }} variant="standard" required></TextField>
         </div>
         <div>
-          <TextField type="text" label="Pincode" style={{ width: "400px", marginTop: "2rem" }} variant="standard"></TextField>
+          <TextField type="text" label="City" style={{ width: "400px", marginTop: "2rem" }} variant="standard" required></TextField>
+        </div>
+      </div>
+      <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center"}}>
+        <div>
+          <TextField type="text" label="State" style={{ width: "400px", marginTop: "2rem" }} variant="standard" required></TextField>
+        </div>
+        <div>
+          <TextField type="text" label="Pincode" style={{ width: "400px", marginTop: "2rem" }} variant="standard" required></TextField>
         </div>
       </div>
       <div style={{display:"flex", justifyContent:"space-evenly", alignContent:"center", marginTop:"30px"}}>

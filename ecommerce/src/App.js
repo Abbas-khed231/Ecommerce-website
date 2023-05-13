@@ -7,7 +7,7 @@ import {BrowserRouter,Route,Routes} from 'react-router-dom';
  import About from './component/About';
 import Layout from './component/Layout';
 import Products from './component/Products';
-import Product from './component/Product';
+// import Product from './component/Product';
 import Checkout from './component/Checkout';
 import Payment from './component/Payment';
 import Cart from './component/Cart';
