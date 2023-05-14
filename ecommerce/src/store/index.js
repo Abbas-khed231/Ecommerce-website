@@ -1,19 +1,19 @@
 import {createStore, combineReducers, applyMiddleware} from "redux";
-// import createSagaMiddleware from "redux-saga";
-// import { all } from "redux-saga/effects";
+import createSagaMiddleware from "redux-saga";
+import { all } from "redux-saga/effects";
 
 import cartReducer from "../store/cart/cartReducer";
-// import {cartSaga} from "./store/cart/cartSaga";
+import {cartSaga} from "../store/cart/cartSaga";
 
 const combinedReducers = combineReducers({cartReducer});
-// const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(combinedReducers);
+const store = createStore(combinedReducers,applyMiddleware(sagaMiddleware));
 
-// function* rootsaga() {
-//     yield all([cartSaga()]);
-// }
+function* rootsaga() {
+    yield all([cartSaga()]);
+}
 
-// sagaMiddleware.run(rootsaga);
+sagaMiddleware.run(rootsaga);
 
 export default store;

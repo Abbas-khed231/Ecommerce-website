@@ -136,7 +136,7 @@ class Products extends Component {
                         Buy Now
                       </button>
 
-                      <button onClick={() => AddToCart(product)} className="btn btn-dark ms-3">Add to Cart</button>
+                      <button onClick={() => this.props.AddToCart(product)} className="btn btn-dark ms-3">Add to Cart</button>
                             </div>
                         </div>
                     </div>
